@@ -68,7 +68,7 @@ void send_walkers(vector<Walker>* outgoing_walkers,
                            int world_rank, int world_size) {
   // Send the data as an array of MPI_BYTEs to the next process.
   // The last process sends to process zero.
-  MPI_Rsend((void*)outgoing_walkers->data(),
+  MPI_Send((void*)outgoing_walkers->data(),
            outgoing_walkers->size() * sizeof(Walker), MPI_BYTE,
            (world_rank + 1) % world_size, 0, MPI_COMM_WORLD);
   // Clear the outgoing walkers list
