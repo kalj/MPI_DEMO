@@ -43,11 +43,13 @@ int main(int argc, char **argv)
 
             printf("Master task: first spawn\n");
             MPI_Comm_dup(MPI_COMM_SELF,&comm_1);
-            MPI_Comm_spawn("./Demospawn",args,2,MPI_INFO_NULL,0,comm_1,&intercomm_1,(int*)MPI_ERRCODES_IGNORE);
+            MPI_Comm_spawn("./Demospawn",args,2,MPI_INFO_NULL,0,
+                           comm_1,&intercomm_1,(int*)MPI_ERRCODES_IGNORE);
 
             printf("Master task: second spawn\n");
             MPI_Comm_dup(MPI_COMM_SELF,&comm_2);
-            MPI_Comm_spawn("./Demospawn",args,2,MPI_INFO_NULL,0,comm_2,&intercomm_2,(int*)MPI_ERRCODES_IGNORE);
+            MPI_Comm_spawn("./Demospawn",args,2,MPI_INFO_NULL,0,
+                           comm_2,&intercomm_2,(int*)MPI_ERRCODES_IGNORE);
 
             printf("Master task: the two groups have been spawned\n");
             printf("Master task: merging the first communicator...\n");
